@@ -35,4 +35,19 @@ describe("help quere actions", () => {
       quantity: 1,
     });
   });
+  it("toggleForm should createTOGGLE-FORM action", () => {
+    expect(actions.toggleEdit()).toEqual({
+      type: c.TOGGLE_EDIT,
+    });
+  });
+  it("toggleForm should createTOGGLE-FORM action", () => {
+    expect(actions.Selected()).toEqual({
+      type: c.SELECTED,
+    });
+  });
+  it("toggleForm should createTOGGLE-FORM action", () => {
+    expect(actions.notSelected()).toEqual({
+      type: c.NOT_SELECTED,
+    });
+  });
 });
