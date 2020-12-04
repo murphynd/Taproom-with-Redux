@@ -37,16 +37,14 @@ describe("selectedKegReducer", () => {
       type: c.SELECTED,
       selectedKeg: currentState[2],
     };
-    expect(selectedKegReducer(currentState[2], action)).toEqual({
-      currentState[2]: {
-        abv: 5,
-        brand: "Miller",
-        id: 2,
-        names: "Highlife",
-        pints: 124,
-        price: 3,
-        quantity: 1,
-      },
+    expect(selectedKegReducer(currentState, action)).toEqual({
+      abv: 5,
+      brand: "Miller",
+      id: 2,
+      names: "Highlife",
+      pints: 124,
+      price: 3,
+      quantity: 1,
     });
   });
 });
