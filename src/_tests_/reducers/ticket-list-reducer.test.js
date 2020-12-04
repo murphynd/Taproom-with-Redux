@@ -4,7 +4,7 @@ import * as c from "../../actions/ActionTypes";
 describe("kegListReducer", () => {
   let action;
   const kegData = {
-    names: "lite",
+    name: "lite",
     brand: "PBR",
     price: 2,
     id: 1,
@@ -14,7 +14,7 @@ describe("kegListReducer", () => {
   };
   const currentState = {
     1: {
-      names: "lite",
+      name: "lite",
       brand: "PBR",
       price: 2,
       id: 1,
@@ -23,7 +23,7 @@ describe("kegListReducer", () => {
       quantity: 1,
     },
     2: {
-      names: "Highlife",
+      name: "Highlife",
       brand: "Miller",
       price: 3,
       id: 2,
@@ -36,10 +36,10 @@ describe("kegListReducer", () => {
     expect(kegListReducer({}, { type: null })).toEqual({});
   });
   test("should succesfully add new keg data to masterKegList", () => {
-    const { names, brand, price, id, abv, pints, quantity } = kegData;
+    const { name, brand, price, id, abv, pints, quantity } = kegData;
     action = {
       type: c.ADD_OR_UPDATE_KEG,
-      names: names,
+      name: name,
       brand: brand,
       price: price,
       id: id,
@@ -49,7 +49,7 @@ describe("kegListReducer", () => {
     };
     expect(kegListReducer({}, action)).toEqual({
       [id]: {
-        names: names,
+        name: name,
         brand: brand,
         price: price,
         id: id,
@@ -66,7 +66,7 @@ describe("kegListReducer", () => {
     };
     expect(kegListReducer(currentState, action)).toEqual({
       2: {
-        names: "Highlife",
+        name: "Highlife",
         brand: "Miller",
         price: 3,
         id: 2,
@@ -77,7 +77,7 @@ describe("kegListReducer", () => {
     });
   });
   //   test("Should add a formatted wait time to keg entry", () => {
-  //     const { names, location, issue, timeOpen, id } = kegData;
+  //     const { name, location, issue, timeOpen, id } = kegData;
   //     action = {
   //       type: c.UPDATE_TIME,
   //       formattedWaitTime: "4 minutes",
@@ -85,7 +85,7 @@ describe("kegListReducer", () => {
   //     };
   //     expect(kegListReducer({ [id]: kegData }, action)).toEqual({
   //       [id]: {
-  //         names: names,
+  //         name: name,
   //         location: location,
   //         issue: issue,
   //         timeOpen: timeOpen,

@@ -27,7 +27,7 @@ describe("rootReducer", () => {
   test("Smoke test: Check that ADD_OR_UPDATE_KEG action works for kegListReducer and root reducer", () => {
     const action = {
       type: c.ADD_OR_UPDATE_KEG,
-      names: "lite",
+      name: "lite",
       brand: "PBR",
       price: 2,
       id: 1,

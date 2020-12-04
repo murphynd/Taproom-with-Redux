@@ -5,7 +5,7 @@ describe("selectedKegReducer", () => {
   let action;
   const currentState = {
     1: {
-      names: "lite",
+      name: "lite",
       brand: "PBR",
       price: 2,
       id: 1,
@@ -14,7 +14,7 @@ describe("selectedKegReducer", () => {
       quantity: 1,
     },
     2: {
-      names: "Highlife",
+      name: "Highlife",
       brand: "Miller",
       price: 3,
       id: 2,
@@ -41,7 +41,7 @@ describe("selectedKegReducer", () => {
       abv: 5,
       brand: "Miller",
       id: 2,
-      names: "Highlife",
+      name: "Highlife",
       pints: 124,
       price: 3,
       quantity: 1,

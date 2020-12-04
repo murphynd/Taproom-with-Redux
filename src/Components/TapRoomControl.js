@@ -28,12 +28,9 @@ class TapRoomControl extends React.Component {
     const action2 = a.toggleForm();
     dispatch(action2);
   };
-  handleChangingSelectedKeg = (keg) => {
-    // const selectedKeg = this.state.masterKegList.filter(
-    //   (keg) => keg.id === id
-    // )[0];
-    // this.setState({ selectedKeg: selectedKeg });
+  handleChangingSelectedKeg = (id) => {
     const { dispatch } = this.props;
+    const keg = this.props.masterKegList[id];
     const action = a.Selected(keg);
     dispatch(action);
   };

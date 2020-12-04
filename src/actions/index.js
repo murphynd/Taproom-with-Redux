@@ -16,10 +16,10 @@ export const notSelected = () => ({
 });
 
 export const addKeg = (keg) => {
-  const { names, brand, price, id, abv, pints, quantity } = keg;
+  const { name, brand, price, id, abv, pints, quantity } = keg;
   return {
     type: c.ADD_OR_UPDATE_KEG,
-    names: names,
+    name: name,
     brand: brand,
     price: price,
     id: id,

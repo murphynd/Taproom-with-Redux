@@ -16,7 +16,7 @@ describe("help quere actions", () => {
   it("addKeg should create ADD_KEG action", () => {
     expect(
       actions.addKeg({
-        names: "lite",
+        name: "lite",
         brand: "PBR",
         price: 2,
         id: 1,
@@ -26,7 +26,7 @@ describe("help quere actions", () => {
       })
     ).toEqual({
       type: c.ADD_OR_UPDATE_KEG,
-      names: "lite",
+      name: "lite",
       brand: "PBR",
       price: 2,
       id: 1,
