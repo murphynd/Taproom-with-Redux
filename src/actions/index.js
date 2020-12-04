@@ -1,5 +1,5 @@
 import * as c from "./../actions/ActionTypes";
-export const deleteTicket = (id) => ({
+export const deleteKeg = (id) => ({
   type: c.DELETE_KEG,
   id,
 });
@@ -15,7 +15,7 @@ export const notSelected = () => ({
   type: c.NOT_SELECTED,
 });
 
-export const addkeg = (keg) => {
+export const addKeg = (keg) => {
   const { names, brand, price, id, abv, pints, quantity } = keg;
   return {
     type: c.ADD_OR_UPDATE_KEG,
