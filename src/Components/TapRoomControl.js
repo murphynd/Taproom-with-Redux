@@ -11,7 +11,7 @@ class TapRoomControl extends React.Component {
   handleClick = () => {
     const { dispatch } = this.props;
     if (this.props.selectedKeg != null) {
-      const action = a.toggleEdit();
+      const action = a.notEditing();
       dispatch(action);
       const action2 = a.notSelected();
       dispatch(action2);
@@ -44,7 +44,7 @@ class TapRoomControl extends React.Component {
   };
   handleEditClick = () => {
     const { dispatch } = this.props;
-    const action = a.toggleEdit();
+    const action = a.editing();
     dispatch(action);
   };
 
@@ -52,7 +52,7 @@ class TapRoomControl extends React.Component {
     const { dispatch } = this.props;
     const action = a.addKeg(KegToEdit);
     dispatch(action);
-    const action2 = a.toggleEdit();
+    const action2 = a.notEditing();
     dispatch(action2);
     const action3 = a.notSelected();
     dispatch(action3);

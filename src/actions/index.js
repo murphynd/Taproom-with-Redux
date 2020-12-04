@@ -28,6 +28,9 @@ export const addKeg = (keg) => {
     quantity: quantity,
   };
 };
-export const toggleEdit = () => ({
-  type: c.TOGGLE_EDIT,
+export const editing = () => ({
+  type: c.EDIT,
+});
+export const notEditing = () => ({
+  type: c.NOT_EDITING,
 });
