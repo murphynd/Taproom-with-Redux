@@ -9,7 +9,7 @@ export const toggleForm = () => ({
 });
 export const selected = (keg) => ({
   type: c.SELECTED,
-  selectedTicket: keg,
+  selectedKeg: keg,
 });
 export const notSelected = () => ({
   type: c.NOT_SELECTED,
