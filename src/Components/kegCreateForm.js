@@ -12,7 +12,7 @@ function KegCreateForm(props) {
       price: event.target.price.value,
       abv: event.target.abv.value,
       pints: 124,
-      quantity: parseInt(event.target.quantity.value),
+      quantity: event.target.quantity.value,
       id: v4(),
     });
   }

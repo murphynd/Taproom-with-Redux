@@ -7,13 +7,16 @@ function Keg(props) {
       <div ClassName="card">
         <div onClick={() => props.whenKegClicked(props.id)}>
           <h3>{props.name}</h3>
-          <h4>Stock: {props.pints > 0 ? props.pints : 'Out of Stock'}</h4>
-
+          <h3>{props.brand}</h3>
+          <h4>Stock: {props.pints > 0 ? props.pints : "Out of Stock"}</h4>
         </div>
-        <button> <p>${props.price}  pint</p> </button>
+        <button>
+          {" "}
+          <p>${props.price} pint</p>{" "}
+        </button>
         <hr />
       </div>
-    </React.Fragment >
+    </React.Fragment>
   );
 }
 
@@ -25,7 +28,7 @@ Keg.propTypes = {
   pints: PropTypes.number,
   quantity: PropTypes.number,
   id: PropTypes.string,
-  whenKegClicked: PropTypes.func
+  whenKegClicked: PropTypes.func,
 };
 
 export default Keg;
