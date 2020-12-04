@@ -8,89 +8,80 @@ import PropTypes from "prop-types";
 import * as a from "./../actions";
 
 class TapRoomControl extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      visible: false,
-      masterKegList: [],
-      selectedKeg: null,
-      editing: false,
-    };
-    this.handleClick = this.handleClick.bind(this);
-  }
   handleClick = () => {
-    if (this.state.selectedKeg != null) {
-      this.setState({
-        visible: false,
-        selectedKeg: null,
-        editing: false,
-      });
+    const { dispatch } = this.props;
+    if (this.props.selectedKeg != null) {
+      const action = a.toggleEdit();
+      dispatch(action);
+      const action2 = a.notSelected();
+      dispatch(action2);
     } else {
-      this.setState((prevState) => ({
-        visible: !prevState.visible,
-      }));
+      const action = a.toggleForm();
+      dispatch(action);
     }
   };
 
   handleAddingKegToList = (newKeg) => {
-    const newMasterKegList = this.state.masterKegList.concat(newKeg);
-    this.setState({
-      masterKegList: newMasterKegList,
-      visible: false,
-    });
+    const { dispatch } = this.props;
+    const action = a.addKeg(newKeg);
+    dispatch(action);
+    const action2 = a.toggleForm();
+    dispatch(action2);
   };
-  handleChangingSelectedKeg = (id) => {
-    const selectedKeg = this.state.masterKegList.filter(
-      (keg) => keg.id === id
-    )[0];
-    this.setState({ selectedKeg: selectedKeg });
+  handleChangingSelectedKeg = (keg) => {
+    // const selectedKeg = this.state.masterKegList.filter(
+    //   (keg) => keg.id === id
+    // )[0];
+    // this.setState({ selectedKeg: selectedKeg });
+    const { dispatch } = this.props;
+    const action = a.Selected(keg);
+    dispatch(action);
   };
 
   handleDeletingKeg = (id) => {
-    const newMasterKegList = this.state.masterKegList.filter(
-      (keg) => keg.id !== id
-    );
-    this.setState({
-      masterKegList: newMasterKegList,
-      selectedKeg: null,
-    });
+    const { dispatch } = this.props;
+    const action = a.deleteKeg(id);
+    dispatch(action);
+    const action2 = a.notSelected();
+    dispatch(action2);
   };
   handleEditClick = () => {
-    this.setState({ editing: true });
+    const { dispatch } = this.props;
+    const action = a.toggleEdit();
+    dispatch(action);
   };
 
   handleEditingKegInList = (KegToEdit) => {
-    const editedMasterKegList = this.state.masterKegList
-      .filter((keg) => keg.id !== this.state.selectedKeg.id)
-      .concat(KegToEdit);
-    this.setState({
-      masterKegList: editedMasterKegList,
-      editing: false,
-      selectedKeg: null,
-    });
+    const { dispatch } = this.props;
+    const action = a.addKeg(KegToEdit);
+    dispatch(action);
+    const action2 = a.toggleEdit();
+    dispatch(action2);
+    const action3 = a.notSelected();
+    dispatch(action3);
   };
 
   render() {
     let currentlyVisibleState = null;
     let buttonText = null;
-    if (this.state.editing) {
+    if (this.props.editing) {
       currentlyVisibleState = (
         <KegEditForm
-          keg={this.state.selectedKeg}
+          keg={this.props.selectedKeg}
           onEditKeg={this.handleEditingKegInList}
         />
       );
       buttonText = "Return to Keg List";
-    } else if (this.state.selectedKeg != null) {
+    } else if (this.props.selectedKeg != null) {
       currentlyVisibleState = (
         <KegDetail
-          keg={this.state.selectedKeg}
+          keg={this.props.selectedKeg}
           onClickingDelete={this.handleDeletingKeg}
           onClickingEdit={this.handleEditClick}
         />
       );
       buttonText = "Return to Keg List";
-    } else if (this.state.visible) {
+    } else if (this.props.formVisibleOnPage) {
       currentlyVisibleState = (
         <KegCreateForm onKegCreateCreation={this.handleAddingKegToList} />
       );
@@ -98,12 +89,12 @@ class TapRoomControl extends React.Component {
     } else {
       currentlyVisibleState = (
         <KegList
-          kegList={this.state.masterKegList}
+          kegList={this.props.masterKegList}
           onKegSelection={this.handleChangingSelectedKeg}
         />
       );
       buttonText = "Add keg";
-      console.log(this.state.masterKegList);
+      console.log(this.props.masterKegList);
     }
     return (
       <React.Fragment>
@@ -119,5 +110,23 @@ class TapRoomControl extends React.Component {
     );
   }
 }
+
+TapRoomControl.propTypes = {
+  masterKegList: PropTypes.object,
+  formVisibleOnPage: PropTypes.bool,
+  editing: PropTypes.bool,
+  selectedKeg: PropTypes.object,
+};
+
+const mapStateToProps = (state) => {
+  return {
+    masterKegList: state.masterKegList,
+    formVisibleOnPage: state.formVisibleOnPage,
+    editing: state.editor,
+    selectedKeg: state.selectedKeg,
+  };
+};
+
+TapRoomControl = connect(mapStateToProps)(TapRoomControl);
 
 export default TapRoomControl;

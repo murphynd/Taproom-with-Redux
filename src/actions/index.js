@@ -7,7 +7,7 @@ export const deleteKeg = (id) => ({
 export const toggleForm = () => ({
   type: c.TOGGLE_FORM,
 });
-export const selected = (keg) => ({
+export const Selected = (keg) => ({
   type: c.SELECTED,
   selectedKeg: keg,
 });
