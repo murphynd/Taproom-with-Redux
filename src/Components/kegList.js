@@ -19,6 +19,8 @@ function KegList(props) {
             quantity={keg.quantity}
             id={keg.id}
             key={keg.id}
+            sellButton={props.onClickingSell}
+            restockButton={props.onClickingRestock}
           />
         ))}
       </div>

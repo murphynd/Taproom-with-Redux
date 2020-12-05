@@ -34,3 +34,12 @@ export const editing = () => ({
 export const notEditing = () => ({
   type: c.NOT_EDITING,
 });
+
+export const sellPint = (id) => ({
+  type: c.SELL_PINT,
+  id: id,
+});
+export const restock = (id) => ({
+  type: c.RESTOCK,
+  id: id,
+});

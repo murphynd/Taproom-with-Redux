@@ -5,3 +5,5 @@ export const EDIT = "EDIT";
 export const NOT_EDITING = "NOT_EDITING";
 export const SELECTED = "SELECTED";
 export const NOT_SELECTED = "NOT_SELECTED";
+export const SELL_PINT = "SELL_PINT";
+export const RESTOCK = "RESTOCK";

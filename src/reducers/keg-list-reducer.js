@@ -21,6 +21,17 @@ export default (state = {}, action) => {
       delete newState[id];
       return newState;
 
+    case c.SELL_PINT:
+      const sellPint = { ...state };
+      sellPint[id].pints--;
+      return sellPint;
+
+    case c.RESTOCK:
+      const reStock = { ...state };
+      reStock[id].quantity++;
+      reStock[id].pints += 124;
+      return reStock;
+
     default:
       return state;
   }

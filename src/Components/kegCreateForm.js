@@ -11,7 +11,7 @@ function KegCreateForm(props) {
       brand: event.target.brand.value,
       price: event.target.price.value,
       abv: event.target.abv.value,
-      pints: 124,
+      pints: event.target.quantity.value * 124,
       quantity: event.target.quantity.value,
       id: v4(),
     });

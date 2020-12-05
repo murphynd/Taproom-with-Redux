@@ -57,6 +57,16 @@ class TapRoomControl extends React.Component {
     const action3 = a.notSelected();
     dispatch(action3);
   };
+  handleSellClicked = (id) => {
+    const { dispatch } = this.props;
+    const action = a.sellPint(id);
+    dispatch(action);
+  };
+  handleRestockClicked = (id) => {
+    const { dispatch } = this.props;
+    const action = a.restock(id);
+    dispatch(action);
+  };
 
   render() {
     let currentlyVisibleState = null;
@@ -88,6 +98,8 @@ class TapRoomControl extends React.Component {
         <KegList
           kegList={this.props.masterKegList}
           onKegSelection={this.handleChangingSelectedKeg}
+          onClickingSell={this.handleSellClicked}
+          onClickingRestock={this.handleRestockClicked}
         />
       );
       buttonText = "Add keg";

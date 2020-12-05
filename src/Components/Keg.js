@@ -10,11 +10,14 @@ function Keg(props) {
           <h3>{props.brand}</h3>
           <h4>Stock: {props.pints > 0 ? props.pints : "Out of Stock"}</h4>
         </div>
-        <button>
-          {" "}
-          <p>${props.price} pint</p>{" "}
+
+        <button onClick={() => props.sellButton(props.id)}>
+          ${props.price} pint
         </button>
-        <hr />
+
+        <button onClick={() => props.restockButton(props.id)}>
+          Restock Keg
+        </button>
       </div>
     </React.Fragment>
   );
