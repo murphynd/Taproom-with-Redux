@@ -27,7 +27,7 @@ function ReusableForm(props) {
             />
           </div>
           <button className="btn btn-primary" type="submit">
-            submit
+            {props.buttonText}
           </button>
         </form>
       </div>

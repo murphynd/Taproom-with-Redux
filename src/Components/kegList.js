@@ -31,5 +31,7 @@ function KegList(props) {
 KegList.propTypes = {
   kegList: PropTypes.object,
   onKegSelection: PropTypes.func,
+  onClickingSell: PropTypes.func,
+  onClickingRestock: PropTypes.func,
 };
 export default KegList;

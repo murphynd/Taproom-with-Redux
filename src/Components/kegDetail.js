@@ -22,8 +22,6 @@ function KegDetail(props) {
       >
         Delete Beer
       </button>
-
-      <button>Restock Beer</button>
     </React.Fragment>
   );
 }

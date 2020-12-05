@@ -76,22 +76,4 @@ describe("kegListReducer", () => {
       },
     });
   });
-  //   test("Should add a formatted wait time to keg entry", () => {
-  //     const { name, location, issue, timeOpen, id } = kegData;
-  //     action = {
-  //       type: c.UPDATE_TIME,
-  //       formattedWaitTime: "4 minutes",
-  //       id: id,
-  //     };
-  //     expect(kegListReducer({ [id]: kegData }, action)).toEqual({
-  //       [id]: {
-  //         name: name,
-  //         location: location,
-  //         issue: issue,
-  //         timeOpen: timeOpen,
-  //         id: id,
-  //         formattedWaitTime: "4 minutes",
-  //       },
-  //     });
-  //   });
 });
