@@ -19,6 +19,7 @@ function Keg(props) {
           Restock Keg
         </button>
       </div>
+      <hr></hr>
     </React.Fragment>
   );
 }

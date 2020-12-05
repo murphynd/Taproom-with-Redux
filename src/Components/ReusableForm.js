@@ -23,6 +23,7 @@ function ReusableForm(props) {
               type="text"
               name="quantity"
               placeholder="number of kegs"
+              defaultValue="0"
               min="0"
             />
           </div>

@@ -1,8 +1,8 @@
 import React from "react";
-import KegList from "./kegList";
-import KegCreateForm from "./kegCreateForm";
-import KegDetail from "./kegDetail";
-import KegEditForm from "./kegEditForm";
+import KegList from "./KegList";
+import KegCreateForm from "./KegCreateForm";
+import KegDetail from "./KegDetail";
+import KegEditForm from "./KegEditForm";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import * as a from "./../actions";
