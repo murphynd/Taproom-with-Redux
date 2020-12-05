@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 function KegList(props) {
   return (
     <React.Fragment>
-      <div className="card">
+      <div className="card shadow">
         <h1>Tap List</h1>
         <hr />
         {Object.values(props.kegList).map((keg) => (

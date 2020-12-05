@@ -21,6 +21,7 @@ function KegEditForm(props) {
       <h1>Edit beer</h1>
       <ReusableForm
         formSubmissionHandler={handleKegEditFormSubmission}
+        keg={keg}
         buttonText="Edit Keg"
       />
     </React.Fragment>
@@ -28,6 +29,7 @@ function KegEditForm(props) {
 }
 
 KegEditForm.propTypes = {
+  keg: PropTypes.object,
   onEditCreation: PropTypes.func,
 };
 

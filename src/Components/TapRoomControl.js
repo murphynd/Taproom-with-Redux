@@ -110,7 +110,7 @@ class TapRoomControl extends React.Component {
         {currentlyVisibleState}
         <button
           type="button"
-          className="btn btn-outline-success"
+          className="btn btn-success btn-lg btn-block shadow"
           onClick={this.handleClick}
         >
           {buttonText}

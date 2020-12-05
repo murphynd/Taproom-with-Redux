@@ -24,6 +24,8 @@ export default (state = {}, action) => {
     case c.SELL_PINT:
       const sellPint = { ...state };
       sellPint[id].pints--;
+      if (sellPint[id].pints >= 124)
+        sellPint[id].quantity = (sellPint[id].pints / 124).toFixed(2);
       return sellPint;
 
     case c.RESTOCK:
