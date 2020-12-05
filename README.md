@@ -120,6 +120,8 @@ This week's progress will be checked using the following objectives:
 
 ### ScreenShot
 
+<img src="https://raw.githubusercontent.com/murphynd/Taproom-with-Redux/master/ScrrenShot.png">
+
 ### ⚙️ Setup and Use
 
 after cloning the project you will need to run these two commands:
