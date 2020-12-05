@@ -6,7 +6,7 @@
     <!-- Project Avatar/Logo -->
     <br>
     <a href="https://github.com/Murphynd">
-        <img style="border-radius: 100%" src="https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/clinking-beer-mugs.png">
+        <img style="border-radius: 100%" src="https://raw.githubusercontent.com/murphynd/Taproom-with-Redux/master/src/Taps.svg"width="500" height="600">
     </a>
     <p align="center">
       ___________________________
@@ -87,8 +87,7 @@ This week's progress will be checked using the following objectives:
 - Project is submitted by the deadline.
 - Project demonstrates an understanding of this section's concepts. If prompted, you can discuss your code with an instructor using the correct terminology.
 
-Once again, make sure to plan your application first and include a component diagram in your README.
-<img src="">
+<img src="https://raw.githubusercontent.com/murphynd/Taproom-with-Redux/master/TapRoom%20Diagram.png" >
 
 ### 🦠 Known Bugs
 
