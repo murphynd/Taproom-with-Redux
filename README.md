@@ -118,6 +118,8 @@ This week's progress will be checked using the following objectives:
 3. Wait for download to complete, then install -- Windows will run the setup exe and macOS will drag and drop into applications.
 4. Optionally, create a [GitHub Account](https://github.com)
 
+### ScreenShot
+
 ### ⚙️ Setup and Use
 
 after cloning the project you will need to run these two commands:
