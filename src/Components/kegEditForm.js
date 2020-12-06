@@ -19,18 +19,20 @@ function KegEditForm(props) {
   }
   return (
     <React.Fragment>
-      <h1>Edit beer</h1>
-      <ReusableForm
-        name={keg.name}
-        brand={keg.brand}
-        price={keg.price}
-        abv={keg.abv}
-        pints={keg.pints}
-        quantity={keg.quantity}
-        id={keg.id}
-        formSubmissionHandler={handleKegEditFormSubmission}
-        buttonText="Edit Keg"
-      />
+      <div className="card shadow">
+        <h1>Edit beer</h1>
+        <ReusableForm
+          name={keg.name}
+          brand={keg.brand}
+          price={keg.price}
+          abv={keg.abv}
+          pints={keg.pints}
+          quantity={keg.quantity}
+          id={keg.id}
+          formSubmissionHandler={handleKegEditFormSubmission}
+          buttonText="Edit Keg"
+        />
+      </div>
     </React.Fragment>
   );
 }

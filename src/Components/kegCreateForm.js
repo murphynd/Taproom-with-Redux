@@ -19,11 +19,13 @@ function KegCreateForm(props) {
 
   return (
     <React.Fragment>
-      <h1>New Keg Form</h1>
-      <ReusableForm
-        formSubmissionHandler={handleKegCreateFormSubmission}
-        buttonText="Add Keg"
-      />
+      <div className="card shadow">
+        <h1>New Keg Form</h1>
+        <ReusableForm
+          formSubmissionHandler={handleKegCreateFormSubmission}
+          buttonText="Add Keg"
+        />
+      </div>
     </React.Fragment>
   );
 }

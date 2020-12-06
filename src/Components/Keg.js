@@ -12,14 +12,14 @@ function Keg(props) {
         </div>
 
         <button
-          className="btn btn-primary btn-lg btn-block"
+          className="btn btn-primary btn-lg btn-block shadow"
           onClick={() => props.sellButton(props.id)}
         >
           ${props.price} pint
         </button>
 
         <button
-          className="btn btn-secondary btn-lg btn-block"
+          className="btn btn-secondary btn-lg btn-block shadow"
           onClick={() => props.restockButton(props.id)}
         >
           Restock Keg
