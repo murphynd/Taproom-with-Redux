@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import ReusableForm from "./ReusableForm";
 
 function KegEditForm(props) {
-  const { keg } = props;
+  const { keg, onEditKeg } = props;
 
   function handleKegEditFormSubmission(event) {
     event.preventDefault();
@@ -12,6 +12,7 @@ function KegEditForm(props) {
       brand: event.target.brand.value,
       price: event.target.price.value,
       abv: event.target.abv.value,
+      pints: event.target.quantity.value * 124,
       quantity: event.target.quantity.value,
       id: keg.id,
     });
@@ -20,8 +21,14 @@ function KegEditForm(props) {
     <React.Fragment>
       <h1>Edit beer</h1>
       <ReusableForm
+        name={keg.name}
+        brand={keg.brand}
+        price={keg.price}
+        abv={keg.abv}
+        pints={keg.pints}
+        quantity={keg.quantity}
+        id={keg.id}
         formSubmissionHandler={handleKegEditFormSubmission}
-        keg={keg}
         buttonText="Edit Keg"
       />
     </React.Fragment>
@@ -30,7 +37,7 @@ function KegEditForm(props) {
 
 KegEditForm.propTypes = {
   keg: PropTypes.object,
-  onEditCreation: PropTypes.func,
+  onEditKeg: PropTypes.func,
 };
 
 export default KegEditForm;
