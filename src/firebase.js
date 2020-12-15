@@ -1,19 +1,17 @@
-import * as firebase from "firebase";
+import firebase from "firebase";
 import "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  apiKey: "AIzaSyB52Ppcnf8onVSKKSbm6y76PuiGqFttoN8",
+  authDomain: "portfolio-662d6.firebaseapp.com",
+  projectId: "portfolio-662d6",
+  storageBucket: "portfolio-662d6.appspot.com",
+  messagingSenderId: "598986696141",
+  appId: "1:598986696141:web:472905eefc7cb1fafa9084",
+  measurementId: "G-T7PH9D10DG",
 };
 
 firebase.initializeApp(firebaseConfig);
 firebase.firestore();
-
-export const provider = new firebase.auth.GoogleAuthProvider();
-export const auth = firebase.auth();
 
 export default firebase;

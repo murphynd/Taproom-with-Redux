@@ -1,19 +1,22 @@
 import React from "react";
-import { v4 } from "uuid";
+// import { v4 } from "uuid";
 import PropTypes from "prop-types";
 import ReusableForm from "./ReusableForm";
+import { useFirestore } from "react-redux-firebase";
 
 function KegCreateForm(props) {
-  function handleKegCreateFormSubmission(event) {
+  const firestore = useFirestore();
+  function addKegToFirestore(event) {
     event.preventDefault();
-    props.onKegCreateCreation({
+    props.onKegCreateCreation();
+    return firestore.collection("kegs").add({
       name: event.target.name.value,
       brand: event.target.brand.value,
       price: event.target.price.value,
       abv: event.target.abv.value,
       pints: event.target.quantity.value * 124,
       quantity: event.target.quantity.value,
-      id: v4(),
+      // id: v4(),
     });
   }
 
@@ -22,7 +25,7 @@ function KegCreateForm(props) {
       <div className="card shadow">
         <h1>New Keg Form</h1>
         <ReusableForm
-          formSubmissionHandler={handleKegCreateFormSubmission}
+          formSubmissionHandler={addKegToFirestore}
           buttonText="Add Keg"
         />
       </div>

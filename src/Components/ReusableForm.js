@@ -27,7 +27,7 @@ function ReusableForm(props) {
           <label>Price</label>
           <div className="form-group">
             <input
-              type="text"
+              type="number"
               name="price"
               placeholder="Price per pint"
               defaultValue={props.price ? props.price : ""}
@@ -45,7 +45,7 @@ function ReusableForm(props) {
           <label>Number of Kegs</label>
           <div className="form-group">
             <input
-              type="text"
+              type="number"
               name="quantity"
               placeholder="quantity"
               min="0"

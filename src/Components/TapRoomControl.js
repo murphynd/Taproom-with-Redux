@@ -6,15 +6,23 @@ import KegEditForm from "./KegEditForm";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import * as a from "./../actions";
+import { withFirestore, isLoaded } from "react-redux-firebase";
 
 class TapRoomControl extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedKeg: null,
+    };
+  }
   handleClick = () => {
     const { dispatch } = this.props;
     if (this.props.selectedKeg != null) {
       const action = a.notEditing();
       dispatch(action);
-      const action2 = a.notSelected();
-      dispatch(action2);
+      this.setState({
+        selectedKeg: null,
+      });
     } else {
       const action = a.toggleForm();
       dispatch(action);
@@ -23,101 +31,110 @@ class TapRoomControl extends React.Component {
 
   handleAddingKegToList = (newKeg) => {
     const { dispatch } = this.props;
-    const action = a.addKeg(newKeg);
-    dispatch(action);
+    // const action = a.addKeg(newKeg);
+    // dispatch(action);
     const action2 = a.toggleForm();
     dispatch(action2);
   };
+
   handleChangingSelectedKeg = (id) => {
-    const { dispatch } = this.props;
-    const keg = this.props.masterKegList[id];
-    const action = a.Selected(keg);
-    dispatch(action);
+    this.props.firestore.get({ collection: "kegs", doc: id }).then((keg) => {
+      const firestoreKeg = {
+        name: keg.get("name"),
+        barnd: keg.get("brand"),
+        price: keg.get("price"),
+        abv: keg.get("abv"),
+        pints: keg.get("pints"),
+        quantity: keg.get("quantity"),
+        id: keg.id,
+      };
+      this.setState({ selectedKeg: firestoreKeg });
+    });
   };
 
   handleDeletingKeg = (id) => {
-    const { dispatch } = this.props;
-    const action = a.deleteKeg(id);
-    dispatch(action);
-    const action2 = a.notSelected();
-    dispatch(action2);
+    this.props.firestore.delete({ collection: "kegs", doc: id });
+    this.setState({ selectedKeg: null });
   };
-  handleEditingKegInList = (KegToEdit) => {
+  handleEditingKegInList = () => {
     const { dispatch } = this.props;
-    const action = a.addKeg(KegToEdit);
+    const action = a.notEditing();
     dispatch(action);
-    const action2 = a.notEditing();
-    dispatch(action2);
-    const action3 = a.notSelected();
-    dispatch(action3);
+    this.setState({
+      selectedKeg: null,
+    });
   };
   handleEditClick = () => {
     const { dispatch } = this.props;
     const action = a.editing();
     dispatch(action);
   };
-  handleSellClicked = (id) => {
-    const { dispatch } = this.props;
-    const action = a.sellPint(id);
-    dispatch(action);
-  };
-  handleRestockClicked = (id) => {
-    const { dispatch } = this.props;
-    const action = a.restock(id);
-    dispatch(action);
-  };
-
   render() {
-    let currentlyVisibleState = null;
-    let buttonText = null;
-    if (this.props.editing) {
-      currentlyVisibleState = (
-        <KegEditForm
-          keg={this.props.selectedKeg}
-          onEditKeg={this.handleEditingKegInList}
-        />
+    const auth = this.props.firebase.auth();
+    if (!isLoaded(auth)) {
+      return (
+        <React.Fragment>
+          <h1>Loading...</h1>
+        </React.Fragment>
       );
-      buttonText = "Return to Keg List";
-    } else if (this.props.selectedKeg != null) {
-      currentlyVisibleState = (
-        <KegDetail
-          keg={this.props.selectedKeg}
-          onClickingDelete={this.handleDeletingKeg}
-          onClickingEdit={this.handleEditClick}
-        />
-      );
-      buttonText = "Return to Keg List";
-    } else if (this.props.formVisibleOnPage) {
-      currentlyVisibleState = (
-        <KegCreateForm onKegCreateCreation={this.handleAddingKegToList} />
-      );
-      buttonText = "Return to Keg List";
-    } else {
-      currentlyVisibleState = (
-        <KegList
-          kegList={this.props.masterKegList}
-          onKegSelection={this.handleChangingSelectedKeg}
-          onClickingSell={this.handleSellClicked}
-          onClickingRestock={this.handleRestockClicked}
-        />
-      );
-      buttonText = "Add keg";
-      console.log(this.props.masterKegList);
     }
-    return (
-      <React.Fragment>
-        {currentlyVisibleState}
-        <br></br>
-        <br></br>
-        <button
-          type="button"
-          className="btn btn-success btn-lg btn-block shadow "
-          onClick={this.handleClick}
-        >
-          {buttonText}
-        </button>
-      </React.Fragment>
-    );
+    if (isLoaded(auth) && auth.currentUser == null) {
+      return (
+        <React.Fragment>
+          <h1>You must be signed in to access the queue.</h1>
+        </React.Fragment>
+      );
+    }
+    if (isLoaded(auth) && auth.currentUser != null) {
+      let currentlyVisibleState = null;
+      let buttonText = null;
+      if (this.props.editing) {
+        currentlyVisibleState = (
+          <KegEditForm
+            keg={this.state.selectedKeg}
+            onEditKeg={this.handleEditingKegInList}
+          />
+        );
+        buttonText = "Return to Keg List";
+      } else if (this.state.selectedKeg != null) {
+        currentlyVisibleState = (
+          <KegDetail
+            keg={this.state.selectedKeg}
+            onClickingDelete={this.handleDeletingKeg}
+            onClickingEdit={this.handleEditClick}
+          />
+        );
+        buttonText = "Return to Keg List";
+      } else if (this.props.formVisibleOnPage) {
+        currentlyVisibleState = (
+          <KegCreateForm onKegCreateCreation={this.handleAddingKegToList} />
+        );
+        buttonText = "Return to Keg List";
+      } else {
+        currentlyVisibleState = (
+          <KegList
+            kegList={this.props.masterKegList}
+            onKegSelection={this.handleChangingSelectedKeg}
+          />
+        );
+        buttonText = "Add keg";
+        console.log(this.handleChangingSelectedKeg);
+      }
+      return (
+        <React.Fragment>
+          {currentlyVisibleState}
+          <br></br>
+          <br></br>
+          <button
+            type="button"
+            className="btn btn-success btn-lg btn-block shadow "
+            onClick={this.handleClick}
+          >
+            {buttonText}
+          </button>
+        </React.Fragment>
+      );
+    }
   }
 }
 
@@ -133,10 +150,9 @@ const mapStateToProps = (state) => {
     masterKegList: state.masterKegList,
     formVisibleOnPage: state.formVisibleOnPage,
     editing: state.editor,
-    selectedKeg: state.selectedKeg,
   };
 };
 
 TapRoomControl = connect(mapStateToProps)(TapRoomControl);
 
-export default TapRoomControl;
+export default withFirestore(TapRoomControl);
